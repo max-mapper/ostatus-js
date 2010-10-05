@@ -11,6 +11,8 @@ p. OStatus consists of the following protocols:
 * Atom
 * Salmon
 
+!http://imgur.com/tdpfH.png!
+
 h1. How much is done?
 
 p. A list of completed features:
