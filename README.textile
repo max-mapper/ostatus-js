@@ -15,11 +15,35 @@ h1. How much is done?
 
 p. A list of completed features:
 
-* WebFinger XRD Discovery (see xrd.js)
+* WebFinger XRD Discovery (see xrd.js). This doesn't include LRDD generation yet.
+
+p. The rest of the OStatus protocols still need to be implemented
+
+h1. How to contribute
+
+p. Pick a protocol and try to write a simple CommonJS function to emulate the protocol. Let's take WebFinger as an example:
+
+p. WebFinger requires that your server respond to a certain URL with a certain XML blob called an XRD, so if you @curl http://gmail.com/.well-known/host-meta@ you will receive:
+
+<pre><code>
+  <?xml version='1.0' encoding='UTF-8'?>
+  <XRD xmlns='http://docs.oasis-open.org/ns/xri/xrd-1.0' 
+       xmlns:hm='http://host-meta.net/xrd/1.0'>
+    <hm:Host xmlns='http://host-meta.net/xrd/1.0'>gmail.com</hm:Host>
+    <Link rel='lrdd' 
+          template='http://www.google.com/s2/webfinger/?q={uri}'>
+      <Title>Resource Descriptor</Title>
+    </Link>
+  </XRD>
+</code></pre>
+
+p. @xrd.js@ in this repository can generate the above XRD by creating the XML using E4X. Most of the OStatus stack is built on XML so E4X will most likely always be a dependency.
 
 h1. Why?
 
 p. CommonJS compatible JavaScript servers like CouchDB would be awesome if they could talk OStatus!
+
+p. These protocols are being built in order to power another project of mine, "couchappspora":http://github.com/maxogden/couchappspora.
 
 p. For more info you can read about the "federated social web":http://status.net/2010/07/13/what-is-the-federated-social-web and check out their "wiki":http://federatedsocialweb.net/wiki/Main_Page
 
@@ -29,7 +53,7 @@ p. CouchDB example (as a CouchDB 'show' view) of how to implement WebFinger disc
 
 <pre><code>
 function(head, req) {
-  var xrd = require("xrd");
+  var xrd = require("/path/to/xrd");
   return {
     "headers" : {"Content-Type" : "application/xml"},
     "body" : xrd.generate('example.com').toXMLString()
