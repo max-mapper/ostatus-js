@@ -1,7 +1,5 @@
 h1. ostatus-js: an attempt to implement OStatus in JavaScript:
 
-p. note: This will most likely always require E4X
-
 p. OStatus consists of the following protocols:
 
 * WebFinger
@@ -39,7 +37,7 @@ p. WebFinger requires that your server respond to a certain URL with a certain X
   </XRD>
 </code></pre>
 
-p. @xrd.js@ in this repository can generate the above XRD by creating the XML using E4X. Most of the OStatus stack is built on XML so E4X will most likely always be a dependency.
+p. @xrd.js@ in this repository can generate the above XRD by creating the XML using E4X. Another approach would be to use XML templates to 'fill in the blanks' and emit valid XML feeds.
 
 p. Ideally this will support the XML heavy OStatus as well as JSON alternatives to the individual OStatus XML protocols, such as "JRD":http://hueniverse.com/2010/05/jrd-the-other-resource-descriptor/, the JSON version of XRD.
 
