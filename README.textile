@@ -19,11 +19,11 @@ p. A list of completed features:
 
 * WebFinger XRD Discovery (see xrd.js). This doesn't include LRDD generation yet.
 
-p. The rest of the OStatus protocols still need to be implemented
+p. The rest of the OStatus protocols still need to be implemented. If you have feedback or ideas please use the "Wiki":http://github.com/maxogden/ostatus-js/wiki
 
 h1. How to contribute
 
-p. Pick a protocol and try to write a simple CommonJS function to emulate the protocol. Let's take WebFinger as an example:
+p. Pick a protocol and try to write a CommonJS module to emulate the protocol. Let's take WebFinger as an example:
 
 p. WebFinger requires that your server respond to a certain URL with a certain XML blob called an XRD, so if you @curl http://gmail.com/.well-known/host-meta@ you will receive:
 
@@ -40,6 +40,8 @@ p. WebFinger requires that your server respond to a certain URL with a certain X
 </code></pre>
 
 p. @xrd.js@ in this repository can generate the above XRD by creating the XML using E4X. Most of the OStatus stack is built on XML so E4X will most likely always be a dependency.
+
+p. Ideally this will support the XML heavy OStatus as well as JSON alternatives to the individual OStatus XML protocols, such as "JRD":http://hueniverse.com/2010/05/jrd-the-other-resource-descriptor/, the JSON version of XRD.
 
 h1. Why?
 
