@@ -13,7 +13,8 @@ p. OStatus consists of the following protocols:
 
 h1. How much is done?
 
-* @xrd.js@ is an exploration of using E4X to generate an XRD. Ultimately this approach is too complicated.
+* There are XML templates for OStatus protocols inside of the @templates@ folder.
+
 * ATOM and XRD parsers from banksean's "node-webfinger":http://github.com/banksean/node-webfinger
 
 p. The rest of the OStatus protocols still need to be implemented. If you have feedback or ideas please use the "Wiki":http://github.com/maxogden/ostatus-js/wiki
@@ -36,7 +37,7 @@ p. WebFinger requires that your server respond to a certain URL with a certain X
   </XRD>
 </code></pre>
 
-p. @xrd.js@ in this repository can generate the above XRD by creating the XML using E4X. Another approach would be to use XML templates to 'fill in the blanks' and emit valid XML feeds.
+p. @xrd.js@ in this repository can generate the above XRD by creating the XML using @templates/xrd.xml.mu@, which is a Mustache template.
 
 p. Ideally this will support the XML heavy OStatus as well as JSON alternatives to the individual OStatus XML protocols, such as "JRD":http://hueniverse.com/2010/05/jrd-the-other-resource-descriptor/, the JSON version of XRD.
 
@@ -57,7 +58,7 @@ function(head, req) {
   var xrd = require("/path/to/xrd");
   return {
     "headers" : {"Content-Type" : "application/xml"},
-    "body" : xrd.generate('example.com').toXMLString()
+    "body" : xrd.generate('example.com')
   }
 }
 </code></pre>
