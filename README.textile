@@ -2,20 +2,19 @@ h1. ostatus-js: an attempt to implement OStatus in JavaScript:
 
 p. OStatus consists of the following protocols:
 
-* WebFinger
-* PortableContacts
-* Activity Streams
-* PubSubHubBub
-* Atom
-* Salmon
+* "PubSubHubbub":http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.3.html
+* "Atom":http://www.atomenabled.org/developers/protocol/atom-protocol-spec.php
+* "RSS":http://cyber.law.harvard.edu/rss/rss.html
+* "Salmon":http://salmon-protocol.googlecode.com/svn/trunk/draft-panzer-salmon-00.html
+* "ActivityStreams":http://activitystrea.ms/
+* "WebFinger":http://code.google.com/p/webfinger/wiki/WebFingerProtocol
 
 !http://imgur.com/tdpfH.png!
 
 h1. How much is done?
 
-p. A list of completed features:
-
-* WebFinger XRD Discovery (see xrd.js). This doesn't include LRDD generation yet.
+* @xrd.js@ is an exploration of using E4X to generate an XRD. Ultimately this approach is too complicated.
+* ATOM and XRD parsers from banksean's "node-webfinger":http://github.com/banksean/node-webfinger
 
 p. The rest of the OStatus protocols still need to be implemented. If you have feedback or ideas please use the "Wiki":http://github.com/maxogden/ostatus-js/wiki
 
