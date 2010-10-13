@@ -13,15 +13,15 @@ p. OStatus consists of the following protocols:
 
 h1. How much is done?
 
-* There are XML templates for OStatus protocols inside of the @templates@ folder.
+* There are Mustache XML templates for OStatus protocols inside of the @templates@ folder. See "CouchAppSpora":http://github.com/maxogden/couchappspora/blob/master/lists/feed.js for an example of how to render these Mustache templates in CouchDB.
 
 * ATOM and XRD parsers from banksean's "node-webfinger":http://github.com/banksean/node-webfinger
 
-p. The rest of the OStatus protocols still need to be implemented. If you have feedback or ideas please use the "Wiki":http://github.com/maxogden/ostatus-js/wiki
+* RSS/ATOM to ActivityStreams JSON (@xmlToActivityStream.js@) is useful for converting feeds on the fly
 
-h1. How to contribute
+p. The rest of the OStatus protocols still need to be implemented (pending). If you have feedback or ideas please use the "Wiki":http://github.com/maxogden/ostatus-js/wiki
 
-p. Pick a protocol and try to write a CommonJS module to emulate the protocol. Let's take WebFinger as an example:
+h1. An example!
 
 p. WebFinger requires that your server respond to a certain URL with a certain XML blob called an XRD, so if you @curl http://gmail.com/.well-known/host-meta@ you will receive:
 
@@ -37,7 +37,7 @@ p. WebFinger requires that your server respond to a certain URL with a certain X
   </XRD>
 </code></pre>
 
-p. @xrd.js@ in this repository can generate the above XRD by creating the XML using @templates/xrd.xml.mu@, which is a Mustache template.
+p. You can use the @xrd.xml.mu@ template and Mustache.js to generate a nice blob of XML just like the above example!
 
 p. Ideally this will support the XML heavy OStatus as well as JSON alternatives to the individual OStatus XML protocols, such as "JRD":http://hueniverse.com/2010/05/jrd-the-other-resource-descriptor/, the JSON version of XRD.
 
@@ -49,19 +49,6 @@ p. These protocols are being built in order to power another project of mine, "c
 
 p. For more info you can read about the "federated social web":http://status.net/2010/07/13/what-is-the-federated-social-web and check out their "wiki":http://federatedsocialweb.net/wiki/Main_Page
 
-h1. How to use!
-
-p. CouchDB example (as a CouchDB 'show' view) of how to implement WebFinger discovery!
-
-<pre><code>
-function(head, req) {
-  var xrd = require("/path/to/xrd");
-  return {
-    "headers" : {"Content-Type" : "application/xml"},
-    "body" : xrd.generate('example.com')
-  }
-}
-</code></pre>
 
 h1. License
 
