@@ -1,5 +1,4 @@
 //this is adapted from @daleharvey's codez
-// TODO: Spec compliant with http://github.com/activitystreams/json-schema/
 
 exports.xmlToActivityStreamJson = function(xml) {
   function zeroPad(n) {
@@ -65,17 +64,17 @@ exports.xmlToActivityStreamJson = function(xml) {
   }
   
   return {
-     "postedTime" : data.data,
+     "postedTime" : data.date,
      "object" : {
-        "summary" : data.body,
+        "content" : data.body,
         "permalinkUrl" : data.link,
         "objectType" : "article",
-        "displayName" : data.title
+        "summary" : data.title
      },
      "verb" : "post",
      "actor" : {
         "permalinkUrl" : data.link,
-        "objectType" : "person",
+        "objectType" : "service",
         "displayName" : data.sourceTitle
      }
   }
